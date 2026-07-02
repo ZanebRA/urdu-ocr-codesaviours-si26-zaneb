@@ -20,6 +20,7 @@ OCR (Optical Character Recognition) is a technology that converts text from imag
 - Uploaded the Week 1 notebook and project files to GitHub.
 
 ## Dataset Structure
+```text
 data/
 ├── labels.csv
 └── raw/
@@ -28,6 +29,7 @@ data/
     ├── signboards/
     ├── synthetic/
     └── other/
+```
 
 ## Technologies Used
 - Python
