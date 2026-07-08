@@ -40,4 +40,25 @@ data/
 - Python-Bidi
 
 ## Project Status
-✅ Week 1 Completed
+ Week 1 Completed
+
+## Gap Analysis (Tesseract OCR)
+
+The Tesseract OCR engine was tested on different categories of Urdu text images after preprocessing.
+
+### Results
+-  Newspaper images: Partial text detected.
+-  Book images: Some Urdu text detected but with recognition errors.
+-  Synthetic images: Short text recognized with minor mistakes.
+-  Signboard images: No text detected.
+-  Other images: No text detected.
+
+### Limitations
+- Struggles with low-quality and noisy images.
+- Performance decreases on complex backgrounds (e.g., signboards).
+- Cannot accurately recognize stylized Urdu fonts.
+- Misses text in blurred or low-contrast images.
+- Recognition accuracy is inconsistent across different image types.
+
+### Conclusion
+Tesseract OCR works reasonably well on clean printed Urdu text but performs poorly on challenging real-world images. A deep learning-based OCR model is needed for better Urdu text recognition.
