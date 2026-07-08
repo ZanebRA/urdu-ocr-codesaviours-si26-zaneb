@@ -60,5 +60,14 @@ The Tesseract OCR engine was tested on different categories of Urdu text images 
 - Misses text in blurred or low-contrast images.
 - Recognition accuracy is inconsistent across different image types.
 
+| Image Type | Expected Text       | Tesseract Output    | Observation        |
+| ---------- | ------------------- | ------------------- | ------------------ |
+| Signboard  | Urdu signboard text | No text detected    | Failed             |
+| Newspaper  | Urdu newspaper text | Partial text        | Many errors        |
+| Book       | Urdu book text      | Partial text        | Recognition errors |
+| Synthetic  | Synthetic Urdu text | Short text detected | Minor errors       |
+| Other      | Urdu text           | No text detected    | Failed             |
+
 ### Conclusion
 Tesseract OCR works reasonably well on clean printed Urdu text but performs poorly on challenging real-world images. A deep learning-based OCR model is needed for better Urdu text recognition.
+
