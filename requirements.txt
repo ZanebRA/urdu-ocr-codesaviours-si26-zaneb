@@ -1,0 +1,9 @@
+
+streamlit
+transformers
+torch
+pillow
+sentencepiece
+tiktoken
+safetensors
+huggingface_hub

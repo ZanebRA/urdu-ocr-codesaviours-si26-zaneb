@@ -74,3 +74,35 @@ Tesseract OCR was tested on five different categories of Urdu images, including 
 ### Conclusion
 
 **Tesseract fails on Urdu because** it struggles to recognize connected Urdu characters, ligatures, different writing styles, and complex backgrounds. Although it performs slightly better on clean printed text, it often produces incomplete, incorrect, or empty results. These limitations highlight the need for a dedicated deep learning–based Urdu OCR model.
+
+## Week 5 - Streamlit Deployment
+
+### Features
+- Upload an Urdu image
+- Extract Urdu text automatically
+- Built with Streamlit and Microsoft's TrOCR model
+
+### Requirements
+- Python 3.10+
+- Streamlit
+- Transformers
+- Torch
+- Pillow
+
+### Run
+
+```bash
+streamlit run app.py
+```
+## Limitations & Future Work
+
+### Limitations
+- The current model is trained on a small dataset (approximately 200 images).
+- OCR accuracy is limited due to the small dataset size and limited diversity of Urdu text.
+- The model may not perform well on complex backgrounds, different fonts, handwritten text, or low-quality images.
+
+### Future Work
+- Scale the dataset to **5,000+ Urdu images** to improve production-level accuracy.
+- Include more fonts, layouts, newspapers, books, signboards, and handwritten Urdu samples.
+- Fine-tune the TrOCR model on a larger and more diverse dataset.
+- Deploy the application for real-world use with improved OCR performance.
