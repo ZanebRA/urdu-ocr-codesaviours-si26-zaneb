@@ -4,7 +4,7 @@ from transformers import TrOCRProcessor, VisionEncoderDecoderModel
 from PIL import Image
 import torch
 
-MODEL_PATH = "/content/drive/MyDrive/trocr_urdu_model"
+MODEL_PATH = "zaneb-217/trocr-urdu-model-si26-zaneb"
 
 processor = TrOCRProcessor.from_pretrained(MODEL_PATH)
 model = VisionEncoderDecoderModel.from_pretrained(MODEL_PATH)
