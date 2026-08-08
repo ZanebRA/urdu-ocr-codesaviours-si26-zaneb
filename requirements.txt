@@ -2,8 +2,8 @@
 streamlit
 transformers
 torch
+torchvision
 pillow
 sentencepiece
-tiktoken
 safetensors
 huggingface_hub
