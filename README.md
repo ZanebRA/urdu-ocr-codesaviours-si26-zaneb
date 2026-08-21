@@ -1,25 +1,24 @@
-# Urdu OCR Internship Project
-## Intern Information
-- **Name:** Zaneb Rasool Ahmed
-- **Department:** ML/AI
+# Urdu Optical Character Recognition (OCR) Tool
 
-## Objective
-To develop an Urdu Optical Character Recognition (OCR) system using Machine Learning and Deep Learning techniques.
+An end-to-end Machine Learning pipeline and Streamlit web application designed to extract printed, synthetic, and complex Urdu text from images using Deep Learning models.
 
-## Research Summary
-OCR (Optical Character Recognition) is a technology that converts text from images into editable digital text. Urdu OCR is more challenging than English OCR because it is written from right to left, letters change shape depending on their position in a word, and many characters have similar appearances. Urdu OCR can be used to digitize books, newspapers, government documents, and educational materials.
+---
 
-## Week 1 Tasks Completed
-- Created GitHub and Google Colab environment.
-- Studied the basics of Urdu OCR.
-- Collected and organized **100 Urdu text images**.
-- Generated **20 synthetic Urdu text images** using Python.
-- Collected images from books, newspapers, signboards, and other sources.
-- Organized the dataset into separate folders.
-- Created **labels.csv** containing image paths and corresponding Urdu text.
-- Uploaded the Week 1 notebook and project files to GitHub.
+## 📌 Project Overview
+OCR (Optical Character Recognition) converts text from images into editable digital format. Urdu OCR presents unique challenges compared to Latin scripts because Urdu is written right-to-left, letters dynamically change shape based on word position, and characters feature complex cursive ligatures. This tool aims to digitize Urdu books, newspapers, signboards, and educational materials.
 
-## Dataset Structure
+---
+
+## 🔗 Project Links & Demo
+
+* 🚀 **Live Demo (Streamlit App):** [Urdu OCR Live Web Application](YOUR_STREAMLIT_APP_LINK_HERE)
+* 📹 **Video Demo (Loom):** [Watch Demo Video](YOUR_URDU_OCR_LOOM_VIDEO_LINK_HERE)
+
+---
+
+## 📁 Dataset Structure
+A dataset of 100+ annotated Urdu text images was organized across 5 distinct categories along with a mapped `labels.csv` file:
+
 ```text
 data/
 ├── labels.csv
@@ -30,70 +29,71 @@ data/
     ├── synthetic/
     └── other/
 ```
+## 🛠️ Technologies Used
+* **Languages & Frameworks:** Python, PyTorch, Streamlit
+* **Libraries:** Transformers (TrOCR), Pillow, Arabic Reshaper, Python-Bidi, Pytesseract
+* **Tools:** Google Colab, GitHub, VS Code
 
-## Technologies Used
-- Python
-- Google Colab
-- GitHub
-- Pillow
-- Arabic Reshaper
-- Python-Bidi
+---
 
-## Project Status
- Week 1 Completed
+## 📊 Tesseract Performance vs. Model Motivation
 
-## Why We Need a Better Model
+Testing standard Tesseract OCR on sample category images highlighted key limitations:
 
-Tesseract OCR was tested on five different categories of Urdu images, including signboards, books, newspapers, other text images, and synthetic images.
+| Category | Actual Urdu Text | Tesseract Output | Observation |
+| :--- | :--- | :--- | :--- |
+| **Signboard** | زمان اسٹیٹ پراپرٹی ایجنسی | *No text detected* | Failed due to complex background and stylized font. |
+| **Book** | محضلہ برلاس کا اسی شہر سے دم گھٹتا تھا | *Partial text* | Some words detected, but character errors occurred. |
+| **Newspaper** | پاکستان اور سعودی عرب کے درمیان... | *Partial text* | Key words missed due to newspaper layout/font. |
+| **Other** | پاکستان کا نعرہ، پاکستان کا مطلب کیا... | *No text detected* | Failed on connected cursive script & noise. |
+| **Synthetic** | پاکستان زندہ باد | *Incomplete text* | Partial detection with missing ligatures. |
 
-### Image 1 – Signboard
-- **Actual Urdu Text:** زمان اسٹیٹ پراپرٹی ایجنسی
-- **Tesseract Output:** No text detected
-- **Observation:** Tesseract failed to detect any Urdu text from the signboard image. The complex background and stylized Urdu font made recognition unsuccessful.
+**Conclusion:** Standard OCR engines struggle with cursive Urdu ligatures and complex backgrounds. This project utilizes Vision Encoder-Decoder architectures (Microsoft TrOCR) fine-tuned for better script-aware recognition.
 
-### Image 2 – Book
-- **Actual Urdu Text:** محضلہ برلاس کا اسی شہر سے دم گھٹتا تھا
-- **Tesseract Output:** Partial Urdu text with recognition errors.
-- **Observation:** Some words were detected, but many characters were incorrect or missing.
+---
 
-### Image 3 – Newspaper
-- **Actual Urdu Text:** پاکستان اور سعودی عرب کے درمیان سیکیورٹی کے شعبے میں مفاہمتی یادداشت پر دستخط
-- **Tesseract Output:** Partial Urdu text with several errors.
-- **Observation:** Some words were recognized correctly, but many characters and words were incorrect or omitted.
+## 💻 How to Run Locally
 
-### Image 4 – Other
-- **Actual Urdu Text:** پاکستان کا نعرہ، پاکستان کا مطلب کیا؟ لا الٰہ الا اللہ۔ میں مرگ بدنامہ ہے
-- **Tesseract Output:** No text detected.
-- **Observation:** Tesseract failed to recognize the Urdu text because of the image complexity and connected Urdu script.
+### 1. Install Dependencies
+```bash
+pip install torch transformers pillow streamlit arabic-reshaper python-bidi pytesseract
+```
 
-### Image 5 – Synthetic
-- **Actual Urdu Text:** پاکستان زندہ باد
-- **Tesseract Output:** Partial text detected.
-- **Observation:** Tesseract recognized part of the text, but the output was incomplete and contained recognition mistakes.
-
-### Conclusion
-
-**Tesseract fails on Urdu because** it struggles to recognize connected Urdu characters, ligatures, different writing styles, and complex backgrounds. Although it performs slightly better on clean printed text, it often produces incomplete, incorrect, or empty results. These limitations highlight the need for a dedicated deep learning–based Urdu OCR model.
-
-## Week 5 - Streamlit Deployment
-
-### Features
-- Upload an Urdu image
-- Extract Urdu text automatically
-- Built with Streamlit and Microsoft's TrOCR model
-
-### Requirements
-- Python 3.10+
-- Streamlit
-- Transformers
-- Torch
-- Pillow
-
-### Run
-
+### 2. Run Streamlit App
 ```bash
 streamlit run app.py
 ```
+### 3. Run Standalone Inference Script
+If you want to run text inference directly in Python without the Streamlit interface:
+
+```python
+import torch
+from PIL import Image
+from transformers import TrOCRProcessor, VisionEncoderDecoderModel
+
+# Load model and processor
+model_name = "microsoft/trocr-base-stage1"  
+processor = TrOCRProcessor.from_pretrained(model_name)
+model = VisionEncoderDecoderModel.from_pretrained(model_name)
+
+device = "cuda" if torch.cuda.is_available() else "cpu"
+model.to(device)
+
+# Load image
+image_path = "data/raw/signboards/13.jpg" 
+image = Image.open(image_path).convert("RGB")
+
+# Preprocess & generate output
+pixel_values = processor(images=image, return_tensors="pt").pixel_values.to(device)
+
+with torch.no_grad():
+    generated_ids = model.generate(pixel_values)
+
+extracted_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
+
+print("Extracted Text:", extracted_text)
+```
+
 ## Limitations & Future Work
 
 ### Limitations
@@ -106,3 +106,8 @@ streamlit run app.py
 - Include more fonts, layouts, newspapers, books, signboards, and handwritten Urdu samples.
 - Fine-tune the TrOCR model on a larger and more diverse dataset.
 - Deploy the application for real-world use with improved OCR performance.
+
+---
+## 👤 Built By
+**Zaneb Rasool Ahmed**  
+*Machine Learning Intern* | **Code Saviours SI-26** | 2026
