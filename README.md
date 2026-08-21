@@ -11,8 +11,8 @@ OCR (Optical Character Recognition) converts text from images into editable digi
 
 ## 🔗 Project Links & Demo
 
-* 🚀 **Live Demo (Streamlit App):** [Urdu OCR Live Web Application](YOUR_STREAMLIT_APP_LINK_HERE)
-* 📹 **Video Demo (Loom):** [Watch Demo Video](YOUR_URDU_OCR_LOOM_VIDEO_LINK_HERE)
+* 🚀 **Live Demo (Streamlit App):** [Urdu OCR Live Web Application](https://urdu-ocr-codesaviours-si26-zaneb-bjd6aedpdq3wbgufp74rul.streamlit.app/)
+* 📹 **Video Demo (Loom):** [Watch Demo Video]()
 
 ---
 
